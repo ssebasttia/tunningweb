@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tunning Cave - Modificación y Estética Automotriz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Variables de colores (Acid Lima Green y Negro Profundo con Blanco Elegante) */
+        :root {
+            --color-primary: #32CD32; /* Verde Lima Ácido (principal) */
+            --color-secondary: #0A0A0A; /* Negro muy oscuro (fondo principal de secciones/header/footer) */
+            --color-text-light: #F0F0F0; /* Blanco suave (para texto en fondos oscuros) */
+            --color-text-dark: #222222; /* Gris oscuro (para texto en elementos blancos si los hubiera) */
+            --color-background: #050505; /* Negro aún más profundo (fondo general del body) */
+            --color-accent: #3ADF00; /* Un verde ligeramente más brillante (para hover/active) */
+            --color-section-alt: #121212; /* Un negro ligeramente menos intenso para alternar secciones */
+            --color-star: #FFD700; /* Color dorado para las estrellas */
+            --color-warning: #dc3545; /* Rojo para advertencias */
+        }
+
+        /* Estilos Generales */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background); /* Fondo general negro profundo */
+            color: var(--color-text-light); /* Texto general blanco suave */
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative; /* Para que los elementos absolutos dentro del header-content respeten su ancho */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--color-primary); /* Títulos en verde lima ácido */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5em; /* Un poco más grande */
+            text-transform: uppercase;
+            letter-spacing: 4px; /* Más espaciado para elegancia */
+        }
+
+        h2 {
+            font-size: 2.8em; /* Un poco más grande */
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: var(--color-text-light); /* H3 en blanco suave */
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            color: var(--color-text-light); /* Párrafos en blanco suave */
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Encabezado (Header) */
+        header {
+            background-color: var(--color-secondary); /* Fondo del header negro oscuro */
+            padding: 20px 0;
+            border-bottom: 3px solid var(--color-primary); /* Borde verde */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Sombra más profunda */
+            position: relative; /* Para el z-index */
+            z-index: 999; /* Por debajo de la burbuja fija */
+        }
+
+        header .header-main-content { /* Contenedor para logo y nav */
+            display: flex;
+            flex-direction: column; /* Apilar elementos verticalmente */
+            align-items: center; /* Centrar horizontalmente */
+            padding: 0 20px;
+        }
+
+        header .logo {
+            margin-bottom: 15px; /* Espacio entre logo y nav */
+        }
+
+        /* Estilo del Logo de Texto */
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2em;
+            color: var(--color-primary); /* Verde lima ácido */
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 10px rgba(50, 205, 50, 0.6), /* Brillo sutil */
+                         0 0 20px rgba(50, 205, 50, 0.4);
+            display: inline-block;
+            padding: 5px 15px;
+            border: 2px solid var(--color-primary); /* Borde verde */
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-text:hover {
+            transform: scale(1.05);
+            background-color: rgba(50, 205, 50, 0.1); /* Fondo sutil verde al hover */
+            text-shadow: 0 0 15px rgba(50, 205, 50, 0.8),
+                         0 0 30px rgba(50, 205, 50, 0.6);
+        }
+
+        nav {
+            width: 100%; /* La navegación ocupa todo el ancho disponible */
+            text-align: center; /* Centra el contenido de la nav */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Centra los elementos de la lista */
+            flex-wrap: wrap; /* Para responsive */
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--color-text-light); /* Texto de navegación blanco suave */
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        /* Contenedor de acciones fijas (burbuja) */
+        .fixed-actions-bubble {
+            position: fixed; /* Fijo en la ventana de visualización */
+            top: 20px; /* Distancia desde la parte superior */
+            right: 20px; /* Distancia desde la derecha */
+            background-color: var(--color-secondary); /* Fondo negro */
+            border: 2px solid var(--color-primary); /* Borde verde */
+            border-radius: 30px; /* Forma de píldora/burbuja */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Espacio entre los elementos */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 1000; /* Siempre visible por encima de otros contenidos */
+            transition: all 0.3s ease;
+        }
+
+        /* Estilos del Carrito de Compras (dentro de la burbuja) */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--color-primary);
+            font-size: 1.8em;
+            transition: color 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            color: var(--color-accent);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.7em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        /* Botón de Cotización (dentro de la burbuja) */
+        .quote-button {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            white-space: nowrap; /* Evita que el texto se rompa */
+            font-size: 0.9em;
+        }
+
+        .quote-button:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Base Styles */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1002; /* Por encima de todo lo demás */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--color-secondary);
+            margin: auto;
+            padding: 30px;
+            border: 2px solid var(--color-primary);
+            border-radius: 10px;
+            width: 80%;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            position: relative;
+            animation: fadeInScale 0.3s ease-out;
+            max-height: 90vh; /* Limitar altura del modal */
+            overflow-y: auto; /* Permitir scroll si el contenido es mucho */
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-button {
+            color: var(--color-primary);
+            font-size: 2em;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .modal-content h2 {
+            color: var(--color-primary);
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Estilos específicos del Modal del Carrito */
+        #cart-items {
+            list-style: none;
+            padding: 0;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        #cart-items li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(50, 205, 50, 0.3);
+            color: var(--color-text-light);
+        }
+
+        #cart-items li:last-child {
+            border-bottom: none;
+        }
+
+        #cart-items .item-info {
+            flex-grow: 1;
+        }
+
+        #cart-items .item-info span {
+            display: block;
+        }
+
+        #cart-items .item-info .item-name {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        #cart-items .item-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        #cart-items .item-actions input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid var(--color-primary);
+            border-radius: 5px;
+            background-color: var(--color-background);
+            color: var(--color-text-light);
+            margin: 0 10px;
+        }
+
+        #cart-items .item-actions .remove-item {
+            background-color: #dc3545; /* Rojo para eliminar */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #cart-items .item-actions .remove-item:hover {
+            background-color: #c82333;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-top: 20px;
+            border-top: 2px solid var(--color-primary);
+            padding-top: 15px;
+        }
+        
+        /* Estilos para los campos de tarjeta */
+        .payment-fields {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(50, 205, 50, 0.3);
+            text-align: left;
+        }
+
+        .payment-fields label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .payment-fields input[type="text"],
+        .payment-fields input[type="number"],
+        .payment-fields input[type="month"],
+        .payment-fields input[type="year"] {
+            width: calc(100% - 24px); /* Ajuste por padding */
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--color-primary);
+            border-radius: 6px;
+            background-color: var(--color-background);
+            color: var(--color-text-light);
+            font-size: 1em;
+            box-sizing: border-box; /* Incluye padding en el width */
+        }
+
+        .payment-fields .expiration-cvv {
+            display: flex;
+            gap: 15px;
+        }
+
+        .payment-fields .expiration-cvv > div {
+            flex: 1;
+        }
+
+        .payment-fields .expiration-cvv input {
+            width: calc(100% - 24px); /* Ajuste para inputs dentro de flex */
+        }
+
+        .payment-fields .warning-message {
+            color: var(--color-warning);
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid var(--color-warning);
+            border-radius: 5px;
+            background-color: rgba(220, 53, 69, 0.2);
+        }
+
+
+        .checkout-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.5);
+        }
+
+        .checkout-button:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(50, 205, 50, 0.8);
+        }
+
+        /* Estilos específicos del Modal de Cotización */
+        #quote-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        #quote-form input[type="text"],
+        #quote-form input[type="number"],
+        #quote-form textarea,
+        #quote-form select {
+            width: calc(100% - 24px); /* Ajuste por padding */
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--color-primary);
+            border-radius: 6px;
+            background-color: var(--color-background);
+            color: var(--color-text-light);
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        #quote-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        #quote-form button[type="submit"] {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.6);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        #quote-form button[type="submit"]:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(50, 205, 50, 0.8);
+        }
+
+
+        /* Sección Hero (Banner principal) */
+        .hero {
+            /* URL de imagen de auto exótico - ¡Reemplázala con tus propias imágenes! */
+            background: url('https://source.unsplash.com/1920x800/?exotic-car,supercar,speed') no-repeat center center/cover;
+            height: 650px; /* Un poco más alto */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid var(--color-primary); /* Borde verde */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Superposición oscura para que el texto resalte */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--color-text-light);
+            max-width: 900px; /* Un poco más ancho */
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5em; /* Más grande */
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(50, 205, 50, 0.8), /* Brillo más intenso para el título */
+                         0 0 30px rgba(50, 205, 50, 0.6);
+        }
+
+        .hero-content p {
+            font-size: 1.4em; /* Más grande */
+            margin-bottom: 40px; /* Más espacio */
+            text-align: center;
+            color: var(--color-text-light);
+        }
+
+        .btn {
+            background-color: var(--color-primary);
+            color: var(--color-secondary); /* Texto del botón negro */
+            padding: 18px 35px; /* Botones más grandes */
+            border-radius: 8px; /* Bordes más suaves */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.5); /* Sombra más pronunciada */
+            border: none; /* Asegura que no haya borde predeterminado */
+        }
+
+        .btn:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-5px); /* Se eleva más */
+            box-shadow: 0 8px 25px rgba(50, 205, 50, 0.8); /* Sombra más grande y brillante */
+        }
+
+        /* Secciones de Contenido */
+        section {
+            padding: 80px 0; /* Más padding vertical */
+            background-color: var(--color-secondary); /* Fondo negro oscuro */
+            margin-bottom: 30px; /* Más margen entre secciones */
+            border-radius: 12px; /* Bordes más suaves */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Sombra más grande y difuminada */
+            position: relative; /* Para posibles efectos internos */
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--color-section-alt); /* Negro ligeramente menos intenso para alternar */
+        }
+
+        .about-us-content, .services-grid, .gallery-grid, .products-grid, .recommendations-grid, .testimonials-grid { /* Añadido .testimonials-grid */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px; /* Más espacio entre elementos */
+            margin-top: 50px; /* Más margen superior */
+        }
+
+        .about-us-content .text-block {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .about-us-content .image-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid var(--color-primary);
+            box-shadow: 0 0 20px rgba(50, 205, 50, 0.5); /* Sombra más brillante para imágenes */
+        }
+
+        /* Servicios y Productos (misma base de estilo) */
+        .service-item, .product-item, .recommendation-item, .testimonial-item { /* Añadido .testimonial-item */
+            background-color: var(--color-section-alt); /* Fondo verde más oscuro */
+            padding: 40px; /* Más padding */
+            border-radius: 10px; /* Bordes más suaves */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Sombra más pronunciada */
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+            border: 1px solid var(--color-primary); /* Borde verde */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover, .product-item:hover, .recommendation-item:hover, .testimonial-item:hover { /* Añadido .testimonial-item:hover */
+            transform: translateY(-8px); /* Se eleva más */
+            box-shadow: 0 12px 30px rgba(50, 205, 50, 0.8); /* Sombra más grande y brillante */
+        }
+
+        .service-item h3, .product-item h3, .recommendation-item h3, .testimonial-item h3 { /* Añadido .testimonial-item h3 */
+            color: var(--color-primary); /* Título de servicio/producto/recomendación/testimonio verde */
+            margin-top: 0;
+            font-size: 2em; /* Títulos más grandes */
+            letter-spacing: 1px;
+        }
+
+        .service-item p, .product-item p, .recommendation-item p, .testimonial-item p.comment { /* Añadido .testimonial-item p.comment */
+            font-size: 1.05em; /* Párrafos ligeramente más grandes */
+            text-align: center;
+            color: var(--color-text-light); /* Texto en blanco suave */
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid var(--color-primary);
+        }
+
+        .product-item .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .product-item .add-to-cart-btn {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .product-item .add-to-cart-btn:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        /* Estilos específicos de Testimonios */
+        .testimonial-item .stars {
+            color: var(--color-star); /* Color dorado para las estrellas */
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-item .client-name {
+            font-weight: bold;
+            color: var(--color-primary); /* Nombre del cliente en verde */
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+        
+        /* Estilos para el Formulario de Comentarios */
+        .comment-form-section {
+            margin-top: 80px; /* Espacio entre los testimonios y el formulario */
+            padding-top: 50px;
+            border-top: 1px solid rgba(50, 205, 50, 0.3);
+        }
+        
+        .comment-form-section h2 {
+            margin-bottom: 40px;
+        }
+
+        /* Estilos para las estrellas seleccionables */
+        .star-rating-input {
+            display: flex;
+            justify-content: center;
+            flex-direction: row-reverse; /* Para que las estrellas se vean de derecha a izquierda */
+            margin-bottom: 20px;
+            gap: 5px;
+        }
+
+        .star-rating-input input[type="radio"] {
+            display: none; /* Oculta los botones de radio nativos */
+        }
+
+        .star-rating-input label {
+            cursor: pointer;
+            width: 30px; /* Tamaño del icono */
+            height: 30px;
+            font-size: 2em;
+            color: #444; /* Color gris para estrellas no seleccionadas */
+            transition: color 0.2s ease;
+            text-align: center;
+            display: block; /* Para que el label ocupe su propio espacio */
+            margin-bottom: 0 !important; /* Anula el margin-bottom de label general */
+        }
+
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label,
+        .star-rating-input input[type="radio"]:checked ~ label {
+            color: var(--color-star); /* Color dorado al seleccionar o pasar el ratón */
+        }
+
+        /* Galería */
+        .gallery-item {
+            background-color: var(--color-section-alt); /* Fondo verde más oscuro */
+            border-radius: 10px; /* Bordes más suaves */
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Sombra pronunciada */
+            border: 1px solid var(--color-primary); /* Borde verde */
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(50, 205, 50, 0.8); /* Sombra más grande y brillante */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px; /* Imágenes más altas */
+            object-fit: cover;
+            display: block;
+            border-bottom: 2px solid var(--color-primary); /* Borde verde */
+        }
+
+        .gallery-item .description {
+            padding: 20px; /* Más padding */
+            text-align: center;
+        }
+
+        .gallery-item h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--color-text-light); /* Título de galería blanco suave */
+            font-size: 1.9em; /* Títulos de galería más grandes */
+        }
+
+        /* Contacto */
+        .contact-info {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-info p {
+            font-size: 1.2em; /* Más grande */
+            margin-bottom: 15px;
+            color: var(--color-text-light); /* Párrafos de contacto blanco suave */
+        }
+
+        .contact-form {
+            max-width: 700px; /* Formulario más ancho */
+            margin: 50px auto 0 auto;
+            background-color: var(--color-section-alt); /* Fondo verde más oscuro */
+            padding: 40px; /* Más padding */
+            border-radius: 12px; /* Bordes más suaves */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Sombra pronunciada */
+            border: 1px solid var(--color-primary); /* Borde verde */
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 10px; /* Más espacio */
+            font-weight: bold;
+            color: var(--color-primary); /* Etiquetas en verde */
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 24px); /* Ajuste de padding */
+            padding: 12px; /* Más padding */
+            margin-bottom: 25px; /* Más espacio */
+            border: 1px solid var(--color-primary); /* Borde verde */
+            border-radius: 6px; /* Bordes más suaves */
+            background-color: var(--color-background); /* Fondo de input negro profundo */
+            color: var(--color-text-light); /* Texto de input blanco suave */
+            font-size: 1em;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px; /* Más alto */
+        }
+
+        .contact-form input[type="submit"] {
+            background-color: var(--color-primary);
+            color: var(--color-secondary); /* Texto del botón negro */
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px; /* Bordes más suaves */
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.6); /* Sombra pronunciada */
+        }
+
+        .contact-form input[type="submit"]:hover {
+            background-color: var(--color-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(50, 205, 50, 0.8); /* Sombra más grande y brillante */
+        }
+
+        /* Pie de página (Footer) */
+        footer {
+            background-color: var(--color-secondary); /* Fondo del footer negro oscuro */
+            color: var(--color-text-light); /* Texto del footer blanco suave */
+            text-align: center;
+            padding: 40px 0; /* Más padding */
+            border-top: 3px solid var(--color-primary); /* Borde verde */
+            margin-top: 50px; /* Más margen superior */
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); /* Sombra pronunciada */
+        }
+
+        footer .social-links a {
+            font-size: 2em; /* Iconos más grandes */
+            margin: 0 15px; /* Más espacio */
+            color: var(--color-text-light); /* Enlaces sociales blanco suave */
+            transition: color 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--color-primary); /* Enlaces sociales hover verde */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3.5em;
+            }
+            .hero-content h1 {
+                font-size: 3.8em;
+            }
+            header .header-main-content {
+                padding-right: 20px; /* Reset padding right as fixed bubble is not in flow */
+            }
+            header .logo {
+                margin-bottom: 15px;
+            }
+            nav {
+                margin-top: 15px;
+                width: 100%; /* Ocupa todo el ancho */
+            }
+            nav ul {
+                justify-content: center; /* Centrar elementos de navegación */
+            }
+            /* Fixed bubble stays fixed, might need adjustment for very small screens */
+            .fixed-actions-bubble {
+                top: 10px; /* Más cerca del borde superior */
+                right: 10px; /* Más cerca del borde derecho */
+                padding: 8px 15px;
+                gap: 10px;
+            }
+            .cart-icon {
+                font-size: 1.5em;
+            }
+            .quote-button {
+                padding: 6px 10px;
+                font-size: 0.85em;
+            }
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8em;
+                letter-spacing: 2px;
+            }
+            h2 {
+                font-size: 2.2em;
+            }
+            .hero-content h1 {
+                font-size: 3.2em;
+            }
+            .hero-content p {
+                font-size: 1.2em;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 10px 0;
+            }
+            .about-us-content, .services-grid, .gallery-grid, .products-grid, .recommendations-grid, .testimonials-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            .service-item, .gallery-item, .product-item, .recommendation-item, .testimonial-item, .contact-form {
+                max-width: 90%;
+            }
+            .service-item h3, .product-item h3, .recommendation-item h3, .testimonial-item h3 {
+                font-size: 1.8em;
+            }
+            .gallery-item img {
+                height: 220px;
+            }
+            .logo-text {
+                font-size: 1.8em;
+                letter-spacing: 2px;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+            .star-rating-input label {
+                font-size: 1.5em; /* Estrellas más pequeñas en móvil */
+                width: 25px;
+                height: 25px;
+            }
+            .payment-fields .expiration-cvv {
+                flex-direction: column; /* Apilar en móvil */
+                gap: 0;
+            }
+            /* Fixed bubble for very small screens */
+            .fixed-actions-bubble {
+                flex-direction: column; /* Apilar iconos en la burbuja */
+                padding: 10px;
+                right: 5px; /* Más cerca del borde */
+                top: auto;
+                bottom: 10px; /* Mover a la parte inferior para no interferir con header */
+                border-radius: 15px; /* Ajustar forma de la burbuja apilada */
+                width: auto; /* Ancho automático */
+            }
+            .fixed-actions-bubble .cart-icon, .fixed-actions-bubble .quote-button {
+                margin: 5px 0; /* Espacio vertical */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+            .hero-content p {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            section {
+                padding: 40px 0;
+            }
+            .service-item, .gallery-item, .product-item, .recommendation-item, .testimonial-item, .contact-form {
+                padding: 25px;
+            }
+            .logo-text {
+                font-size: 1.5em;
+                letter-spacing: 1px;
+            }
+            #cart-items li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            #cart-items .item-actions {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: space-between;
+            }
+            #cart-items .item-actions input {
+                margin: 0;
+                width: 40px;
+            }
+            .quote-button {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-main-content">
+            <div class="logo">
+                <div class="logo-text">TUNNING CAVE</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio" class="active">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#recomendaciones">Consejos</a></li>
+                    <li><a href="#opiniones">Opiniones</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="fixed-actions-bubble">
+        <div class="cart-icon" id="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cart-count">0</span>
+        </div>
+        <button class="quote-button" id="quote-button">Cotización</button>
+    </div>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Transforma Tu Vehículo</h1>
+            <p>En Tunning Cave, la pasión por la personalización automotriz cobra vida. Elevamos tu coche a un nivel de arte y rendimiento inigualable.</p>
+            <a href="#servicios" class="btn">Descubre Nuestros Servicios</a>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <div class="container">
+            <h2>Quiénes Somos</h2>
+            <div class="about-us-content">
+                <div class="text-block">
+                    <p>En **Tunning Cave**, no solo modificamos vehículos; creamos obras maestras sobre ruedas. Nuestra dedicación y maestría en la estética y el rendimiento automotriz nos han consolidado como líderes en la transformación de coches comunes en vehículos extraordinarios.</p>
+                    <p>Con un equipo de ingenieros y diseñadores apasionados, cada proyecto es abordado con la máxima precisión y una visión artística única. Desde la optimización más sutil hasta la reconstrucción más audaz, garantizamos resultados que superan las expectativas.</p>
+                    <p>Tu coche es una extensión de tu identidad. Permítenos potenciar su carácter y llevarlo al límite de la innovación y el estilo. En Tunning Cave, la excelencia es la norma, y tu satisfacción, nuestra mayor recompensa.</p>
+                </div>
+                <div class="image-block">
+                    <img src="https://source.unsplash.com/500x350/?car-customization,auto-shop-interior" alt="Taller de Tunning Cave">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Ingeniería de Motor</h3>
+                    <p>Maximizamos la potencia y eficiencia con reprogramaciones de ECU, mejoras de admisión y escape, y kits de sobrealimentación avanzados.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Dinámica de Suspensión</h3>
+                    <p>Control total con sistemas de suspensión deportiva, coilovers ajustables y frenos de alto rendimiento para una respuesta superior.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Diseño Exterior Exclusivo</h3>
+                    <p>Kits aerodinámicos a medida, pintura personalizada multicapa, vinilados premium y llantas de aleación ultraligeras.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Interiores de Lujo y Personalizados</h3>
+                    <p>Transformamos el habitáculo con tapicería artesanal, iluminación ambiental sofisticada y sistemas de infoentretenimiento de vanguardia.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Iluminación LED Avanzada</h3>
+                    <p>Integración de soluciones LED de alta intensidad para faros, luces diurnas y acentos interiores, con control inteligente.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Detallado y Protección Premium</h3>
+                    <p>Servicios de detailing de élite, aplicación de recubrimientos cerámicos de larga duración y protección de pintura para un brillo eterno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="productos">
+        <div class="container">
+            <h2>Nuestros Productos</h2>
+            <div class="products-grid">
+                <div class="product-item" data-id="prod1" data-name="Kit de Suspensión Deportiva" data-price="850.00">
+                    <img src="https://source.unsplash.com/400x300/?car-suspension,sport-shocks" alt="Kit de Suspensión Deportiva">
+                    <h3>Kit de Suspensión Deportiva</h3>
+                    <p>Mejora el manejo y la estética de tu vehículo con nuestro kit de suspensión de alto rendimiento.</p>
+                    <div class="price">$850.00</div>
+                    <button class="add-to-cart-btn">Añadir al Carrito</button>
+                </div>
+                <div class="product-item" data-id="prod2" data-name="Sistema de Escape Performance" data-price="1200.00">
+                    <img src="https://source.unsplash.com/400x300/?car-exhaust,performance-muffler" alt="Sistema de Escape Performance">
+                    <h3>Sistema de Escape Performance</h3>
+                    <p>Libera el verdadero sonido y potencia de tu motor con un sistema de escape de flujo libre.</p>
+                    <div class="price">$1200.00</div>
+                    <button class="add-to-cart-btn">Añadir al Carrito</button>
+                </div>
+                <div class="product-item" data-id="prod3" data-name="Juego de Llantas Ligeras 18''" data-price="1500.00">
+                    <img src="https://source.unsplash.com/400x300/?car-wheels,alloy-rims" alt="Juego de Llantas Ligeras">
+                    <h3>Juego de Llantas Ligeras 18''</h3>
+                    <p>Reduce el peso no suspendido y mejora la respuesta con llantas de aleación forjada.</p>
+                    <div class="price">$1500.00</div>
+                    <button class="add-to-cart-btn">Añadir al Carrito</button>
+                </div>
+                <div class="product-item" data-id="prod4" data-name="Frenos de Alto Rendimiento" data-price="950.00">
+                    <img src="https://source.unsplash.com/400x300/?car-brakes,performance-calipers" alt="Frenos de Alto Rendimiento">
+                    <h3>Frenos de Alto Rendimiento</h3>
+                    <p>Máxima seguridad y control con discos ventilados y pinzas de múltiples pistones.</p>
+                    <div class="price">$950.00</div>
+                    <button class="add-to-cart-btn">Añadir al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <div class="container">
+            <h2>Nuestros Proyectos</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/400x300/?custom-supercar,tuned-engine" alt="Proyecto de Tunning 1">
+                    <div class="description">
+                        <h3>Bestia de Pista</h3>
+                        <p>Optimización de rendimiento extremo y diseño aerodinámico agresivo.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/400x300/?vintage-car,modern-restoration" alt="Proyecto de Tunning 2">
+                    <div class="description">
+                        <h3>Elegancia Clásica Reinterpretada</h3>
+                        <p>Restauración meticulosa con tecnología y lujo contemporáneos.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/400x300/?urban-custom-car,stance" alt="Proyecto de Tunning 3">
+                    <div class="description">
+                        <h3>Escultura Urbana</h3>
+                        <p>Diseño audaz con vinilado único y suspensión neumática de precisión.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/400x300/?sportscar-interior,luxury-dashboard" alt="Proyecto de Tunning 4">
+                    <div class="description">
+                        <h3>Sinfonía Interior</h3>
+                        <p>Habitáculo transformado con materiales nobles y tecnología intuitiva.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/400x300/?car-lighting,underglow" alt="Proyecto de Tunning 5">
+                    <div class="description">
+                        <h3>Aura Luminosa</h3>
+                        <p>Innovadora iluminación exterior e interior que define su presencia.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/400x300/?custom-paint,automotive-art" alt="Proyecto de Tunning 6">
+                    <div class="description">
+                        <h3>Lienzo Rodante</h3>
+                        <p>Pintura de autor y acabados personalizados que desafían lo convencional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recomendaciones">
+        <div class="container">
+            <h2>Consejos del Experto</h2>
+            <div class="recommendations-grid">
+                <div class="recommendation-item">
+                    <h3>La Importancia de un Detallado Profesional</h3>
+                    <p>Un buen detallado no solo mejora la apariencia, sino que protege la pintura y mantiene el valor de reventa de tu coche a largo plazo.</p>
+                </div>
+                <div class="recommendation-item">
+                    <h3>Elige la Suspensión Correcta</h3>
+                    <p>Una suspensión adecuada, adaptada a tu estilo de conducción (pista, calle, confort), mejora drásticamente el manejo y la seguridad del vehículo.</p>
+                </div>
+                <div class="recommendation-item">
+                    <h3>Potencia y Seguridad Van de la Mano</h3>
+                    <p>Al aumentar la potencia del motor, es crucial actualizar también el sistema de frenos y la capacidad de agarre para una experiencia segura y equilibrada.</p>
+                </div>
+                <div class="recommendation-item">
+                    <h3>Invierte en Llantas de Calidad</h3>
+                    <p>Las llantas son el único punto de contacto con el asfalto. Unas de buena calidad son cruciales para el rendimiento, la seguridad y la respuesta de tu auto.</p>
+                </div>
+                <div class="recommendation-item">
+                    <h3>La Aerodinámica no es Solo Estética</h3>
+                    <p>Los kits aerodinámicos no solo le dan un aspecto agresivo a tu coche; mejoran la estabilidad a altas velocidades y la eficiencia de combustible.</p>
+                </div>
+                <div class="recommendation-item">
+                    <h3>La Personalización Refleja Tu Estilo</h3>
+                    <p>No temas ser audaz con la estética. La personalización de tu vehículo es una forma de expresión que lo hace verdaderamente único.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="opiniones">
+        <div class="container">
+            <h2>Opiniones de Nuestros Clientes</h2>
+            <div class="testimonials-grid" id="testimonials-grid">
+                </div>
+
+            <div class="comment-form-section">
+                <h2>Deja Tu Opinión</h2>
+                <form id="comment-form" class="contact-form">
+                    <label for="comment-name">Tu Nombre:</label>
+                    <input type="text" id="comment-name" required>
+
+                    <label>Tu Calificación:</label>
+                    <div class="star-rating-input">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5" class="fas fa-star"></label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" class="fas fa-star"></label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" class="fas fa-star"></label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" class="fas fa-star"></label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="fas fa-star"></label>
+                    </div>
+
+                    <label for="comment-text">Tu Comentario:</label>
+                    <textarea id="comment-text" rows="6" required></textarea>
+
+                    <button type="submit" class="btn">Enviar Comentario</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <div class="contact-info">
+                <p>Tu visión, nuestra especialidad. Estamos listos para escuchar tu proyecto y superar tus expectativas.</p>
+                <p><strong>Teléfono:</strong> +52 55 1234 5678</p>
+                <p><strong>Email:</strong> info@tunningcave.com</p>
+                <p><strong>Dirección:</strong> Av. de la Modificación #123, Colonia Automotriz, C.P. 01234, Ciudad de México</p>
+            </div>
+            <div class="contact-form">
+                <h3>Envíanos un Mensaje</h3>
+                <form action="#" method="POST">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="asunto">
+
+                    <label for="mensaje">Mensaje:</label>
+                    <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+
+                    <input type="submit" value="Enviar Mensaje">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tunning Cave. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#" target="_blank">Facebook</a> |
+                <a href="#" target="_blank">Instagram</a> |
+                <a href="#" target="_blank">YouTube</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal="cart-modal">&times;</span>
+            <h2>Tu Carrito de Compras</h2>
+            <ul id="cart-items">
+                </ul>
+            <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+            
+            <div class="payment-fields">
+           
+
+                </div>
+                <label for="card-number">Número de Tarjeta:</label>
+                <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+
+                <div class="expiration-cvv">
+                    <div>
+                        <label for="expiry-date">Fecha de Vencimiento (MM/AA):</label>
+                        <input type="text" id="expiry-date" placeholder="MM/AA" maxlength="5">
+                    </div>
+                    <div>
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" placeholder="XXX" maxlength="4">
+                    </div>
+                </div>
+
+                <label for="promo-code">Código Promocional:</label>
+                <input type="text" id="promo-code" placeholder="Introduce tu código">
+            </div>
+
+            <button class="checkout-button" id="proceed-to-checkout">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <div id="quote-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal="quote-modal">&times;</span>
+            <h2>Solicitar Cotización</h2>
+            <form id="quote-form">
+                <label for="car-make">Marca del Vehículo:</label>
+                <input type="text" id="car-make" required>
+
+                <label for="car-model">Modelo del Vehículo:</label>
+                <input type="text" id="car-model" required>
+
+                <label for="car-year">Año del Vehículo:</label>
+                <input type="number" id="car-year" min="1900" max="2025" required>
+
+                <label for="car-version">Versión/Edición (Ej: Sport, Limited, etc.):</label>
+                <input type="text" id="car-version">
+
+                <label for="quote-details">Detalles de la Cotización (Servicios/Productos de interés):</label>
+                <textarea id="quote-details" rows="5"></textarea>
+
+                <button type="submit">Enviar Solicitud de Cotización</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartIcon = document.getElementById('cart-icon');
+            const cartModal = document.getElementById('cart-modal');
+            const quoteButton = document.getElementById('quote-button');
+            const quoteModal = document.getElementById('quote-modal');
+            const closeButtons = document.querySelectorAll('.close-button');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const cartItemsList = document.getElementById('cart-items');
+            const cartTotalSpan = document.getElementById('cart-total');
+            const cartCountSpan = document.getElementById('cart-count');
+            const proceedToCheckoutButton = document.getElementById('proceed-to-checkout');
+            const quoteForm = document.getElementById('quote-form');
+            const testimonialsGrid = document.getElementById('testimonials-grid');
+            const commentForm = document.getElementById('comment-form');
+
+            let cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+
+            // Testimonios iniciales (estáticos) y carga desde localStorage
+            const initialTestimonials = [
+                { name: "Miguel G.", comment: "¡Increíble trabajo! Mi coche parece otro, justo lo que imaginaba y más. La atención al detalle es impecable.", rating: 5 },
+                { name: "Laura S.", comment: "Servicio de primera. La mejora de rendimiento es notable y el asesoramiento fue muy profesional. ¡Volveré sin duda!", rating: 4.5 },
+                { name: "Carlos R.", comment: "Superaron mis expectativas. Mi vehículo ahora no solo luce espectacular, sino que se siente mucho mejor al conducir.", rating: 4 },
+                { name: "Sofía M.", comment: "Muy contento con el resultado del detailing y el pulido. El coche brilla como nunca. Altamente recomendados.", rating: 4 }
+            ];
+            let testimonials = JSON.parse(localStorage.getItem('testimonials')) || initialTestimonials;
+
+            // Función para guardar el carrito en localStorage
+            function saveCart() {
+                localStorage.setItem('shoppingCart', JSON.stringify(cart));
+            }
+
+            // Función para guardar testimonios en localStorage
+            function saveTestimonials() {
+                localStorage.setItem('testimonials', JSON.stringify(testimonials));
+            }
+
+            // Función para actualizar el contador del carrito
+            function updateCartCount() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCountSpan.textContent = totalItems;
+            }
+
+            // Función para renderizar los items del carrito en el modal
+            function renderCartItems() {
+                cartItemsList.innerHTML = ''; // Limpiar lista
+                let total = 0;
+
+                if (cart.length === 0) {
+                    cartItemsList.innerHTML = '<li style="text-align: center; color: #aaa;">El carrito está vacío.</li>';
+                } else {
+                    cart.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <div class="item-info">
+                                <span class="item-name">${item.name}</span>
+                                <span class="item-price">$${item.price.toFixed(2)} c/u</span>
+                            </div>
+                            <div class="item-actions">
+                                <input type="number" value="${item.quantity}" min="1" data-id="${item.id}" class="item-quantity">
+                                <button class="remove-item" data-id="${item.id}">Eliminar</button>
+                            </div>
+                        `;
+                        cartItemsList.appendChild(listItem);
+                        total += item.price * item.quantity;
+                    });
+                }
+                cartTotalSpan.textContent = total.toFixed(2);
+                updateCartCount();
+                saveCart();
+            }
+
+            // Función para renderizar los testimonios
+            function renderTestimonials() {
+                testimonialsGrid.innerHTML = ''; // Limpiar la cuadrícula
+                testimonials.forEach(testimonial => {
+                    const testimonialItem = document.createElement('div');
+                    testimonialItem.classList.add('testimonial-item');
+
+                    let starsHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        if (i <= Math.floor(testimonial.rating)) {
+                            starsHtml += '<i class="fas fa-star"></i>'; // Estrella llena
+                        } else if (i - 0.5 === testimonial.rating) {
+                            starsHtml += '<i class="fas fa-star-half-alt"></i>'; // Media estrella
+                        } else {
+                            starsHtml += '<i class="far fa-star"></i>'; // Estrella vacía (contorno)
+                        }
+                    }
+
+                    testimonialItem.innerHTML = `
+                        <div class="stars">${starsHtml}</div>
+                        <p class="comment">"${testimonial.comment}"</p>
+                        <p class="client-name">- ${testimonial.name}</p>
+                    `;
+                    testimonialsGrid.appendChild(testimonialItem);
+                });
+            }
+
+            // Añadir producto al carrito
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productItem = this.closest('.product-item');
+                    const id = productItem.dataset.id;
+                    const name = productItem.dataset.name;
+                    const price = parseFloat(productItem.dataset.price);
+
+                    const existingItemIndex = cart.findIndex(item => item.id === id);
+
+                    if (existingItemIndex > -1) {
+                        cart[existingItemIndex].quantity += 1;
+                    } else {
+                        cart.push({ id, name, price, quantity: 1 });
+                    }
+                    renderCartItems();
+                    alert(`${name} ha sido añadido al carrito.`);
+                });
+            });
+
+            // Manejar cambios de cantidad y eliminación en el carrito
+            cartItemsList.addEventListener('change', function(event) {
+                if (event.target.classList.contains('item-quantity')) {
+                    const id = event.target.dataset.id;
+                    const newQuantity = parseInt(event.target.value);
+                    const itemIndex = cart.findIndex(item => item.id === id);
+                    if (itemIndex > -1 && newQuantity > 0) {
+                        cart[itemIndex].quantity = newQuantity;
+                    } else if (newQuantity <= 0) {
+                         // Si la cantidad es 0 o menos, eliminar el item
+                        cart = cart.filter(item => item.id !== id);
+                    }
+                    renderCartItems();
+                }
+            });
+
+            cartItemsList.addEventListener('click', function(event) {
+                if (event.target.classList.contains('remove-item')) {
+                    const id = event.target.dataset.id;
+                    cart = cart.filter(item => item.id !== id);
+                    renderCartItems();
+                }
+            });
+
+            // Abrir y cerrar modales
+            function openModal(modalElement) {
+                modalElement.style.display = 'flex';
+            }
+
+            function closeModal(modalElement) {
+                modalElement.style.display = 'none';
+            }
+
+            cartIcon.addEventListener('click', () => openModal(cartModal));
+            quoteButton.addEventListener('click', () => openModal(quoteModal));
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const modalToCloseId = event.target.dataset.modal;
+                    const modalToClose = document.getElementById(modalToCloseId);
+                    if (modalToClose) {
+                        closeModal(modalToClose);
+                    }
+                });
+            });
+
+            // Cerrar modales al hacer clic fuera
+            window.addEventListener('click', (event) => {
+                if (event.target === cartModal) {
+                    closeModal(cartModal);
+                }
+                if (event.target === quoteModal) {
+                    closeModal(quoteModal);
+                }
+            });
+
+            // Manejar el envío del formulario de pago (DEMOSTRACIÓN SOLAMENTE)
+            proceedToCheckoutButton.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert('Tu carrito está vacío. Por favor, añade algunos productos antes de proceder al pago.');
+                    return;
+                }
+                
+                const cardNumber = document.getElementById('card-number').value;
+                const expiryDate = document.getElementById('expiry-date').value;
+                const cvv = document.getElementById('cvv').value;
+
+                if (!cardNumber || !expiryDate || !cvv) {
+                    alert('Por favor, completa todos los campos de pago (solo para demostración, NO REAL).');
+                    return;
+                }
+
+                alert('Simulación de pago exitosa. ¡Gracias por tu compra! (Este no es un pago real y los datos no se procesan de forma segura).');
+                cart = []; // Vaciar carrito
+                renderCartItems();
+                closeModal(cartModal);
+            });
+
+
+            // Manejar envío del formulario de comentarios
+            commentForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevenir el envío del formulario
+
+                const name = commentNameInput.value.trim();
+                const comment = commentTextInput.value.trim();
+                const ratingInput = document.querySelector('input[name="rating"]:checked');
+                const rating = ratingInput ? parseFloat(ratingInput.value) : 0;
+
+                if (!name || !comment || rating === 0) {
+                    alert("Por favor, completa todos los campos y selecciona una calificación.");
+                    return;
+                }
+
+                const newTestimonial = { name, comment, rating };
+                testimonials.push(newTestimonial);
+                saveTestimonials(); // Guardar los nuevos testimonios
+                renderTestimonials(); // Volver a renderizar la sección
+
+                // Limpiar el formulario
+                commentForm.reset();
+                alert("¡Gracias por tu opinión!");
+            });
+
+            // Manejar envío del formulario de cotización
+            quoteForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const make = document.getElementById('car-make').value;
+                const model = document.getElementById('car-model').value;
+                const year = document.getElementById('car-year').value;
+                const version = document.getElementById('car-version').value;
+                const details = document.getElementById('quote-details').value;
+
+                const quoteText = `
+                --- Nueva Cotización ---
+                Marca: ${make}
+                Modelo: ${model}
+                Año: ${year}
+                Versión: ${version || 'No especificado'}
+                Detalles: ${details || 'No se proporcionaron detalles adicionales.'}
+                -----------------------
+                `;
+
+                // Aquí usarías la herramienta de Gemini para crear una nota
+                // En un entorno real, esto se enviaría a un servidor/base de datos.
+                try {
+                    // This call will be intercepted and handled by the Gemini backend.
+                    // It will create a new note in your Gemini Notes & Lists.
+                    // For a real web app, this would be an API call to your own server.
+                    await google.colab.kernel.invokeFunction(
+                        'notes_and_lists.create_note',
+                        [quoteText],
+                        {}
+                    );
+                    alert('¡Tu solicitud de cotización ha sido enviada! La hemos guardado para revisión. Nos pondremos en contacto contigo pronto.');
+                } catch (error) {
+                    console.error("Error al guardar la cotización (simulado):", error);
+                    alert('Hubo un problema al enviar tu cotización. Por favor, inténtalo de nuevo.');
+                }
+                
+                // Resetear el formulario
+                quoteForm.reset();
+                closeModal(quoteModal);
+            });
+
+            // Manejo de scroll para la navegación (mantener la sección activa)
+            window.addEventListener("scroll", () => {
+                let current = "";
+                const sections = document.querySelectorAll("section");
+                const navLinks = document.querySelectorAll("nav ul li a");
+
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.href.includes(current)) {
+                        link.classList.add("active");
+                    }
+                });
+            });
+
+            // Inicializar al cargar la página
+            updateCartCount();
+            renderCartItems(); // Asegurar que el carrito esté renderizado al cargar
+            renderTestimonials(); // Renderizar testimonios al cargar
+        });
+    </script>
+</body>
+</html>
